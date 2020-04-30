@@ -25,10 +25,12 @@ const POSITION = {
 
 class ToastContainer extends Component {
   static show({ ...config }) {
-    this.toastInstance._root.showToast({ config });
+    if (this.toastInstance && this.toastInstance._root){
+      this.toastInstance._root.showToast({ config });
+    }
   }
   static hide() {
-    if (this.toastInstance._root.getModalState()) {
+    if (this.toastInstance && this.toastInstance._root && this.toastInstance._root.getModalState()) {
       this.toastInstance._root.closeToast('functionCall');
     }
   }
